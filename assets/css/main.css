@@ -1,0 +1,426 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap');
+
+
+
+/* Colours (dark is the default) */
+:root {
+    --bg: #131417;
+    --text: #8b91a3;          /* body text, muted */
+    --strong: #f2f3f5;        /* names, titles, links */
+    --faint: #4a4f5c;         /* dates, separators */
+    --line: #25282f;          /* borders */
+    --box: #1c1e23;           /* image placeholders */
+    --accent: #ef7a45;        /* koi orange */
+    --font: 'Roboto Mono', ui-monospace, monospace;
+}
+
+/* Light theme, switched on by the dot in the menu
+body.light-theme {
+    --bg: #fbfbfa;
+    --text: #6b6f7a;
+    --strong: #18191c;
+    --faint: #a5a9b3;
+    --line: #e7e7e4;
+    --box: #efefec;
+} */
+/* Light theme: day pond */
+body.light-theme {
+    --bg: #e4eee8;
+    --bg-top: #f4f9f6;
+    --text: #5c7a72;
+    --strong: #1c302c;
+    --faint: #93aba3;
+    --line: #c9dbd1;
+    --box: #d2e3d9;
+    --accent: #c9532a;
+}
+
+/* Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--text);
+        background-image: linear-gradient(to bottom, var(--bg-top), var(--bg) 70%) fixed;
+    transition: background-color .25s, color .25s;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Links inside text: bright, with a faint underline that firms up on hover */
+.link {
+    color: var(--strong);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--faint);
+    transition: text-decoration-color .15s;
+}
+
+.link:hover {
+    text-decoration-color: var(--strong);
+}
+
+/* The koi pond: fills the screen behind everything */
+.pond {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* One narrow column for every page, on top of the pond */
+.page {
+    position: relative;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 40px 20px 64px;
+}
+
+/* Header: doodle on the left, menu on the right */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 72px;
+}
+
+.logo img {
+    width: 52px;
+    height: auto;
+    mix-blend-mode: multiply;   /* hides the white behind the drawing */
+}
+
+body:not(.light-theme) .logo img {
+    filter: invert(1);
+    mix-blend-mode: screen;     /* hides the black behind the drawing */
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 13px;
+}
+
+.nav a {
+    opacity: .5;
+    transition: opacity .15s;
+}
+
+.nav a:hover,
+.nav a.current {
+    opacity: 1;
+    color: var(--strong);
+}
+
+
+/* Page text */
+.eyebrow {
+    font-size: 12px;
+    color: var(--faint);
+}
+
+h1 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--strong);
+}
+
+.role {
+    margin-bottom: 28px;
+}
+
+.prose p + p {
+    margin-top: 18px;
+}
+
+#typewriter-text {
+    color: var(--strong);
+}
+
+.typing-cursor {
+    color: var(--accent);
+    animation: cursor-blink .8s step-end infinite;
+}
+
+@keyframes cursor-blink {
+    50% { opacity: 0; }
+}
+
+/* Small section headings, like "recent" on the home page */
+.section {
+    margin-top: 56px;
+}
+
+.section-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--faint);
+    margin-bottom: 12px;
+}
+
+/* A simple list of title + date rows */
+.rows li + li {
+    border-top: 1px solid var(--line);
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: baseline;
+    padding: 10px 0;
+}
+
+.row-title {
+    color: var(--strong);
+}
+
+.row:hover .row-title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.date {
+    color: var(--faint);
+    font-size: 12px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Projects page: one card per project */
+.cards {
+    display: grid;
+    gap: 40px;
+}
+
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.media {
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--box);
+}
+
+.media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s;
+}
+
+.card:hover .media img {
+    transform: scale(1.02);
+}
+
+.caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+/* Flicks page: a two-column photo grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.grid .media {
+    aspect-ratio: 4 / 5;
+}
+
+/* Koi page: a pixel drawing next to each note */
+.koi-list {
+    display: grid;
+    gap: 28px;
+}
+
+.koi-entry {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.koi-entry h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.koi-art {
+    flex-shrink: 0;
+    width: 78px;
+    height: 138px;
+    image-rendering: pixelated;
+}
+
+/* Resume page */
+.entry + .entry {
+    margin-top: 14px;
+}
+
+/* Footer */
+.footer {
+    margin-top: 80px;
+    font-size: 12px;
+    color: var(--faint);
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    .header {
+        margin-bottom: 48px;
+    }
+
+    .nav {
+        gap: 14px;
+    }
+}
+/* Horizontal photo stretches across the whole row */
+.grid .wide {
+    grid-column: 1 / -1;
+}
+
+.grid .wide .media {
+    aspect-ratio: 16 / 9;
+}
+/* Project pop-up */
+.project-panel {
+    width: min(620px, calc(100% - 32px));
+    max-height: 85vh;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.75;
+    overflow-y: auto;
+}
+
+.project-panel[open] {
+    animation: panel-in .35s ease-out;
+}
+
+@keyframes panel-in {
+    from { opacity: 0; transform: translateY(12px) scale(.97); }
+}
+
+.project-panel::backdrop {
+    background: rgba(0, 0, 0, .35);
+}
+
+body.light-theme .project-panel::backdrop {
+    background: rgba(0, 0, 0, .12);
+}
+
+/* Stop the page behind from scrolling while a project is open */
+body:has(.project-panel[open]) {
+    overflow: hidden;
+}
+
+.panel-close {
+    position: sticky;
+    top: 12px;
+    float: right;
+    margin: 12px 12px 0 0;
+    width: 30px;
+    height: 30px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background-color: var(--bg);
+    color: var(--strong);
+    font: inherit;
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.panel-inner {
+    padding: 28px 24px 32px;
+}
+
+.panel-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--strong);
+    margin-bottom: 16px;
+}
+
+.panel-inner .section {
+    margin-top: 32px;
+}
+
+/* Theme toggle: a pixel sun in dark mode, a pixel moon in light mode.
+   It shows the one you'll switch to, and spins in when you click it. */
+.theme-toggle {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Crect x='4' y='3' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='5' y='3' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='3' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='7' y='3' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='5' y='4' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='4' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='8' y='4' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='5' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='8' y='5' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='8' y='6' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='8' y='7' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23fab43c'/%3E%3Crect x='6' y='0' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='5' y='0' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='11' y='6' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='10' y='6' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='11' y='5' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='10' y='5' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='10' y='1' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='9' y='2' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23fac45a'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%23fac45a'/%3E%3C/svg%3E") center / contain no-repeat;
+    image-rendering: pixelated;
+    cursor: pointer;
+    opacity: .85;
+    transition: opacity .15s, transform .25s;
+    animation: toggle-sun .5s ease-out;
+}
+
+body.light-theme .theme-toggle {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' shape-rendering='crispEdges'%3E%3Crect x='4' y='1' width='1' height='1' fill='%2341507a'/%3E%3Crect x='5' y='1' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='2' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='2' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%2341507a'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%2341507a'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%2341507a'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%2341507a'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%2341507a'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%2341507a'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='9' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='10' y='8' width='1' height='1' fill='%2341507a'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%2341507a'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%2341507a'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%2341507a'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%2341507a'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%2341507a'/%3E%3Crect x='7' y='10' width='1' height='1' fill='%2341507a'/%3E%3Crect x='8' y='10' width='1' height='1' fill='%2341507a'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%2341507a'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%2341507a'/%3E%3Crect x='10' y='0' width='1' height='1' fill='%2341507a'/%3E%3Crect x='9' y='1' width='1' height='1' fill='%2341507a'/%3E%3Crect x='10' y='1' width='1' height='1' fill='%2341507a'/%3E%3Crect x='11' y='1' width='1' height='1' fill='%2341507a'/%3E%3Crect x='10' y='2' width='1' height='1' fill='%2341507a'/%3E%3C/svg%3E");
+    animation: toggle-moon .5s ease-out;
+}
+
+.theme-toggle:hover {
+    opacity: 1;
+    transform: rotate(20deg) scale(1.15);
+}
+
+@keyframes toggle-sun {
+    from { transform: rotate(-180deg) scale(.4); opacity: 0; }
+}
+
+@keyframes toggle-moon {
+    from { transform: rotate(180deg) scale(.4); opacity: 0; }
+}
