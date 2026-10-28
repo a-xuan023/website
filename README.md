@@ -1,2 +1,2 @@
 WIP 
-go to [my site](amandaxuan.com)
+go to [my site](https://amandaxuan.com))
