@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blogs | Amanda Xuan</title>
+    <link rel="icon" type="image/png" href="./assets/images/doodle.png">
+    <link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+    <div class="page">
+
+        <!-- Header (the same on every page) -->
+        <header class="header">
+            <a href="./index.html" class="logo" aria-label="Home">
+                <img src="./assets/images/doodle.png" alt="">
+            </a>
+
+            <nav class="nav" aria-label="Main">
+                <a href="./index.html">home</a>
+                <a href="./projects.html">projects</a>
+                <a href="./blogs.html">blogs</a>
+                <a href="./flicks.html">flicks</a>
+                <a href="./about.html">about me</a>
+                <a href="./koi.html">koi</a>
+                <button class="theme-toggle" id="theme-toggle-btn" aria-label="Switch light and dark"></button>
+            </nav>
+        </header>
+
+        <main>
+            <h1>blogs</h1>
+            <p class="role">..still updating this page</p>
+
+            <div class="cards">
+                <a href="#project-2" class="card" id="project-2">
+                    <div class="card-head">
+                        <span class="row-title">tung tung tung sahur</span>
+                        <span class="date">2026-10-29</span>
+                    </div>
+                    <div class="media">
+                        <img src="./assets/images/trending-3.jpg" alt="">
+                    </div>
+                </a>
+                <a href="#project-1" class="card" id="project-1">
+                    <div class="card-head">
+                        <span class="row-title">things that helped me understand my degree</span>
+                        <span class="date">2026-09-11</span>
+                    </div>
+                    <div class="media">
+                        <img src="./assets/images/trending-2.png" alt="kayaking @ whidbey island">
+                    </div>
+                </a>
+            </div>
+            <!-- The pop-up that opens when you click a project -->
+            <dialog class="project-panel" id="project-panel">
+                <button class="panel-close" aria-label="Close">×</button>
+                <div class="panel-inner"></div>
+            </dialog>
+
+            <!-- Project details
+                 Its id is "details-" plus the card's id. -->
+            <template id="details-project-1">
+                <p class="date">2026-09-11</p>
+                <h2 class="panel-title">things that helped me understand my degree</h2>
+                <div class="media">
+                    <img src="./assets/images/trending-2.png" alt="kayaking @ whidbey island">
+                </div>
+
+                <section class="section">
+                    <div class="prose">
+                        <p><a href="https://www.reddit.com/r/uwaterloo/s/noor7AWpJy" class="link" target="_blank" rel="noopener">this reddit thread here</a> its basically everything i do. explained better than i can.</p>
+                        <p>others:
+                            bro code's youtube channel</p>
+                        <p>my high school calc teacher</p>
+                        <p>data mining for dummies by M.Brown</p>
+                    </div>
+                </section>
+            </template>
+
+            <!-- Project 2 pop-up (current). Replace every [____] with your own words. -->
+            <template id="details-project-2">
+                <p class="date">2026-10-29</p>
+                <h2 class="panel-title">tung tung tung sahur</h2>
+                <div class="media">
+                    <img src="./assets/images/trending-3.jpg" alt="dog bone tensile specimen and tung tung tung sahur">
+                </div>
+                <p style="font-size: 0.8em; opacity: 0.7; margin-top: 0.5em;">left: dog bone tensile specimen, right: tung tung tung sahur</p>
+
+                <section class="section">
+                    <div class="prose">
+                        <p>we found cardboard at ikea and spent 6 hours building them. total of 0 dollars, we were unemployed so time is free.</p>
+                    </div>
+                </section>
+
+                <div class="media">
+                    <img src="./assets/images/trending-4.jpg" alt="[describe picture 4]">
+                </div>
+
+                <section class="section">
+                    <div class="prose">
+                        <p>six engineers vs tung tung tung sahur</p>
+                    </div>
+                </section>
+
+                <div class="media">
+                    <img src="./assets/images/trending-5.jpg" alt="tung tung in corner" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 25%;">
+                </div>
+                <p style="font-size: 0.8em; opacity: 0.7; margin-top: 0.5em;">tung tung in corner</p>
+                
+                
+            </template>
+        </main>
+
+        <!-- Footer (the same on every page) -->
+        <footer class="footer">© 2026 Amanda Xuan</footer>
+
+    </div>
+
+    <script src="./assets/js/pond.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/projects.js"></script>
+</body>
+</html>
