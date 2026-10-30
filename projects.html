@@ -1,3 +1,25 @@
+Claude
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Projects · HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +53,16 @@
             <p class="role">..still updating this page</p>
 
             <div class="cards">
+                <a href="#tps-planner" class="card" id="tps-planner">
+                    <div class="card-head">
+                        <span class="row-title">TPS planner: where should ambulances wait?</span>
+                        <span class="date">2026-10-30</span>
+                    </div>
+                    <div class="media">
+                        <img src="./assets/images/tps-planner.png" alt="map of toronto postal areas coloured by forecast paramedic calls, with ambulance positions" style="object-position: right center;">
+                    </div>
+                </a>
+
                 <a href="#project-1" class="card" id="project-1">
                     <div class="card-head">
                         <span class="row-title">things that helped me understand my degree</span>
@@ -71,6 +103,24 @@
 
             <!-- Project details
                  Its id is "details-" plus the card's id. -->
+            <template id="details-tps-planner">
+                <p class="date">2026-10-22</p>
+                <h2 class="panel-title">TPS planner: where should ambulances wait?</h2>
+                <div class="media">
+                    <img src="./assets/images/tps-planner.png" alt="map of toronto postal areas coloured by forecast paramedic calls, with ambulance positions" style="object-position: right center;">
+                </div>
+
+                <section class="section">
+                    <div class="prose">
+                        <p>it predicts how many paramedic calls each of toronto's 96 postal areas will get in the next 3 hours, then works out where free ambulances should wait so the most calls are within 4 km of one. you pick a date, a time and how many ambulances you have, and the map shows the forecast and where to put them.</p>
+                        <p>how it works: 1.5 million calls from 2021–2025, cleaned and counted by area. the forecast comes from gradient boosting or a small neural network, trained on 2021–2024 and tested on 2025. placement is an optimization model, the same kind of covering problem from my operations research class. then i replayed every 3-hour window of 2025 to score each plan against what actually happened.</p>
+                        <p>the result: with the same 10 ambulances, the optimizer reached 87.8% of calls vs 75.8% for a simple rule.</p>
+                        <p>used: python, pandas, scikit-learn, pytorch, scipy, streamlit, plotly. data from city of toronto open data and statistics canada.</p>
+                        <p><a href="https://github.com/a-xuan023/TPS-planner" class="link" target="_blank" rel="noopener">check it out on github</a></p>
+                    </div>
+                </section>
+            </template>
+
             <template id="details-project-1">
                 <p class="date">2026-09-11</p>
                 <h2 class="panel-title">things that helped me understand my degree</h2>
@@ -163,3 +213,4 @@
     <script src="./assets/js/projects.js"></script>
 </body>
 </html>
+Claude finished the response
