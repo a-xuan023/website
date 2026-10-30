@@ -71,7 +71,7 @@
 
                 <section class="section">
                     <div class="prose">
-                        <p>this ML model predicts how many paramedic calls each of toronto's 96 postal areas will get in the next 3 hours, then works out where free ambulances should wait so the most calls are within 4 km of one. you pick a date, a time and how many ambulances you have, and the map shows the forecast and where to put them.</p>
+                        <p>this tool predicts how many paramedic calls each of toronto's 96 postal areas will get in the next 3 hours, then works out where free ambulances should wait so the most calls are within 4 km of one. you pick a date, a time and how many ambulances you have, and the map shows the forecast and where to put them.</p>
                         <p>how it works: 1.5 million calls from 2021–2025, cleaned and counted by area. the forecast comes from gradient boosting or a small neural network, trained on 2021–2024 and tested on 2025. placement is an optimization model. then i replayed every 3-hour window of 2025 to score each plan against what actually happened.</p>
                         <p>the result: with the same 10 ambulances, the optimizer reached 87.8% of calls vs 75.8% for a simple rule.</p>
                         <p>used: python, pandas, scikit-learn, pytorch, scipy, streamlit, plotly. data from city of toronto open data and statistics canada.</p>
